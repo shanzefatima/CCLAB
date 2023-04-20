@@ -21,7 +21,7 @@ function setup(){
   q_y = [height/4];
   ellipseMode(RADIUS);
   initiate_l();
-  background("pink");
+  background("black");
   initial_lines();
 }
 
@@ -199,7 +199,7 @@ function show_charges(){
 function force(x,y){
   var f_eq_x = 0,
       f_eq_y = 0;
-  for (let i = 0; i <= q.length-8; i++){
+  for (let i = 0; i <= q.length-1; i++){
     var qx = q_x[i],
         qy = q_y[i],
         qm = abs(q[i]),
@@ -216,7 +216,7 @@ function force(x,y){
 }
 
 function initiate_l(){
-  for (let i = 0; i <= q.length-1; i++){
+  for (let i = 0; i <= q.length-2; i++){
     if (q[i] > 0){
       for (let j = 0; j <= lines-1; j++){
         l.push([q_x[i]+(55+abs(q[i]*10))*Math.cos(j*2*PI/lines),q_y[i]-(55+abs(q[i]*10))*Math.sin(j*2*PI/lines)]);
@@ -250,7 +250,7 @@ function is_present(a,b){
 function direction(a,b,c,d){ //gives the angle from point (a,b) to the point (c,d)
   if (a === c){
     if (b < d){
-      return PI/3;
+      return PI/4;
     } else {
       return -PI/6;
     }
