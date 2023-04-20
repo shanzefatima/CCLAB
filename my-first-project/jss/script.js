@@ -1,26 +1,27 @@
+
+
 var q = [3],
-    q_x = [250],
-    q_y = [0],
-    l = [250],
+    q_x = [240],
+    q_y = [210],
+    l = [],
     lines = 90,
     iterations = 2000,
-    counter = 3,
+    counter = 0,
     r1 = 255,
-    g1 = 0,
-    b1 = 255,
-    r2 = 0,
-    g2 = 255,
+    g1 = 255,
+    b1 = 0,
+    r2 = 255,
+    g2 = 0,
     b2 = 255,
     charge = 3;
 
 function setup(){
-  let canvas= createCanvas(windowWidth-40, windowHeight-40);
-  canvas.parent("myContainer");
-  q_x = [width/2];
-  q_y = [height/2];
+  createCanvas(windowWidth-30, windowHeight-30);
+  q_x = [width/4];
+  q_y = [height/4];
   ellipseMode(RADIUS);
   initiate_l();
-  background("blue");
+  background("pink");
   initial_lines();
 }
 
@@ -116,15 +117,15 @@ function remove_elements(a,b){
 }
 
 function restart(){
-  background(255);
+  background(0);
   l = [];
   initiate_l();
-  counter = 6;
+  counter = 0;
   initial_lines();
 }
 
 function initial_lines(){
-  strokeWeight(255);
+  strokeWeight(2);
   stroke(r2,g2,b2);
   for (let i = 0; i <= q.length-1; i++){
     if (q[i] > 0){
@@ -161,7 +162,7 @@ function joining_lines(a,b){
   for (let i = 0; i <= a.length-1; i++){
     var f_x = force(a[i][0],a[i][1])[0],
         f_y = force(a[i][0],a[i][1])[1],
-        f = (f_x**2 + f_y**2)**0.5,
+        f = (f_x**2 + f_y**2)**1.5,
         k2 = 20;
     stroke(r1+f/k2*(r2-r1),g1+f/k2*(g2-g1),b1+f/k2*(b2-b1));
     line(a[i][0],a[i][1],b[i][0],b[i][1]);
@@ -170,7 +171,7 @@ function joining_lines(a,b){
 
 function least_distance(x,y){
   var list = [];
-  for (let i = 0; i <= q.length-1; i++){
+  for (let i = 2; i <= q.length-1; i++){
     list.push(dist(x,y,q_x[i],q_y[i])-abs(q[i])*10);
   }
   return (min(list));
@@ -178,7 +179,7 @@ function least_distance(x,y){
 
 function mouse_debugging(){
   strokeWeight(2);
-  stroke(255,255,0);
+  stroke(0,255,255);
   line(mouseX,mouseY,mouseX+force(mouseX,mouseY)[0],mouseY-force(mouseX,mouseY)[1]);
 }
 
@@ -189,7 +190,7 @@ function show_charges(){
     if (q[i] > 0){
       fill(255,0,0);
     } else {
-      fill(255,255,0);
+      fill(0,0,255);
     }
     ellipse(q_x[i],q_y[i],abs(q[i])*10);
   }
@@ -198,7 +199,7 @@ function show_charges(){
 function force(x,y){
   var f_eq_x = 0,
       f_eq_y = 0;
-  for (let i = 0; i <= q.length-1; i++){
+  for (let i = 0; i <= q.length-8; i++){
     var qx = q_x[i],
         qy = q_y[i],
         qm = abs(q[i]),
@@ -249,9 +250,9 @@ function is_present(a,b){
 function direction(a,b,c,d){ //gives the angle from point (a,b) to the point (c,d)
   if (a === c){
     if (b < d){
-      return PI/8;
+      return PI/3;
     } else {
-      return PI/4;
+      return -PI/6;
     }
   } else {
     return(Math.atan((d-b)/(c-a))+PI*Math.sign(1-Math.sign(c-a))+2*PI*Math.sign(Math.sign(a-c)-1)*Math.sign(Math.sign(d-b)-1));
