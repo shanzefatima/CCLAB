@@ -1,0 +1,103 @@
+/* Reset default margin and padding */
+* {
+  margin: 20;
+  padding: 20;
+  box-sizing: border-box;
+}
+
+/* Set basic font styles */
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  background-color: whitesmoke;
+}
+
+/* Style the title */
+h1 {
+  margin: 2rem ;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  color: #333;
+  letter-spacing: 0.2rem;
+  text-shadow: 2px 2px gray;
+}
+
+/* Add some padding to the top and bottom of the title */
+h1 {
+  padding: 2rem 0;
+}
+
+/* Style the canvas container */
+#canvasContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0vh;
+  margin: 0 auto;
+  font-size: 2rem;
+  max-width: 1400px;
+  padding: 2rem;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Center the canvas */
+canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Style the project description */
+p {
+  margin: 2rem auto;
+  max-width: 1800px;
+  text-align: justify;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #666;
+  padding: 2rem;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  box-shadow: 0 15 20px rgba(255, 0, 255, 0.2);
+}
+
+
+/* Add a border around the canvas */
+canvas {
+  border: 5px solid #333;
+  border-radius: 20px;
+}
+
+/* Add a hover effect to the canvas */
+canvas:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Style the link to the code */
+a {
+  display: inline-block;
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: bold;
+  color: #0e2b66;
+  text-decoration: none;
+  border: 2px solid #333;
+  padding: 1rem 2rem;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 1.2rem;
+  border-radius: 4px;
+}
+
+a:hover {
+  background-color: #333;
+  color: #21222d;
+}
+
+

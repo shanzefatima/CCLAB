@@ -1,5 +1,3 @@
-
-
 var q = [3],
     q_x = [240],
     q_y = [210],
@@ -8,7 +6,9 @@ var q = [3],
     iterations = 2000,
     counter = 0,
     r1 = 255,
+    r2=0
     g1 = 255,
+    r3=255
     b1 = 0,
     r2 = 255,
     g2 = 0,
@@ -126,7 +126,7 @@ function restart(){
 
 function initial_lines(){
   strokeWeight(2);
-  stroke(r2,g2,b2);
+  stroke(r2,g2,b2,r3);
   for (let i = 0; i <= q.length-1; i++){
     if (q[i] > 0){
       for (let j = 0; j <= lines-1; j++){
@@ -164,7 +164,7 @@ function joining_lines(a,b){
         f_y = force(a[i][0],a[i][1])[1],
         f = (f_x**2 + f_y**2)**1.5,
         k2 = 20;
-    stroke(r1+f/k2*(r2-r1),g1+f/k2*(g2-g1),b1+f/k2*(b2-b1));
+    stroke(r1+f/k2*(r2-r1),g1+f/k2*(g2-g1),b1+f/k2*(b2-b1),k2+r2(r3-r2));
     line(a[i][0],a[i][1],b[i][0],b[i][1]);
   }
 }
