@@ -39,7 +39,9 @@ h1 {
   /* height: calc(100vh - 180px); */
   margin: 0 auto;
   max-width: 2000px;
+  font-weight: bold;
   padding: 2rem;
+  font-size: 20px;
   background-color: #fff;
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -55,7 +57,7 @@ canvas {
 /* Style the project description */
 p {
   margin: 2rem auto;
-  max-width: 1200px;
+  max-width: 1300px;
   text-align: justify;
   font-size: 1.2rem;
   line-height: 1.6;
