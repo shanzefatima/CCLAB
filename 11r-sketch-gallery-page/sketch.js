@@ -15,6 +15,7 @@ function setup() {
   circleMaxSize = width * 0.7;
   circleColor1 = color(255, 0, 0); 
   circleColor2 = color(255, 255, 0); 
+  circleColor3 = color(255,255,255)
 
   bgColor = color(0);
   lineColor = color("white");

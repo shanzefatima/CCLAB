@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CCLab Project</title>
+
+</head>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <input type="text" id="color-picker" />
+
+
+  <script src="libraries/p5.min.js"></script>
+  <!-- Uncomment the line below if you use audio. -->
+   <script src="libraries/p5.sound.min.js"></script> 
+</head>
+
+<body>
+
+  <h1>Project Title- Welcome to the Project B </h1>
+
+  <!-- the following div will contain the p5 canvas. -->
+  <div id="canvasContainer"></div>
+  <script src="sketch.js"></script>
+
+  <div>
+		<label for="waveform-type">Waveform Type:</label>
+		<input type="range" id="waveform-type" min="0" max="2" step="1" value="0">
+	</div>
+
+  <button id="playButton" onclick="togglePlay()">Play</button>
+
+
+  <p>Project B is designed in a very interesting manner it will not only allow the user to interact and create visuals rather it will allow the user to create their own music art </p>
+
+  <!-- the script tag below should always be at the bottom, right before the closing body tag -->
+  <script src="sketch.js"></script>
+</body>
+
+</html>

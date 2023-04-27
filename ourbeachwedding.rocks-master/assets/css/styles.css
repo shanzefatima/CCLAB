@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,700,900&display=swap');
+@font-face {
+	font-family: 'Radiant';
+	src: url('../fonts/radiant-webfont.woff2') format('woff2'),
+		url('../fonts/radiant-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Globals */
+html {overflow-y:scroll; overflow-x:hidden;}
+html, body {height:100%;}
+body {
+	display:flex;
+	flex-direction:column;
+	font-family:'Montserrat', sans-serif;
+	color:#222;
+	background-color:#c8d0d2;
+	background-image:url(../img/bg-body.jpg);
+	background-position:center center;
+	background-size:cover;
+	background-attachment:fixed;
+}
+
+a, button {transition:all 0.50s;}
+a:hover {text-decoration:none;}
+label {margin-bottom:0; font-weight:700;}
+label,
+textarea,
+input[type='text'],
+input[type='email'] {width:100%;}
+.hidden {display:none;}
+.disabled {cursor:not-allowed!important;}
+.red {background:lightsalmon!important;}
+.blue {background:lightblue!important;}
+.green {background:lightgreen!important;}
+
+/* ------------------------------ */
+
+/* Bootstrap Resets */
+.btn {border:0; color:#fff; text-transform:uppercase; border-radius:0; letter-spacing:1px;}
+.btn:focus {border-color:inherit; -webkit-box-shadow:none; box-shadow:none;} /* yea, I know, don't do this */
+
+.btn-primary {background-color:#5ac0c7;}
+.btn-primary:hover {background-color:#55ccd4; border-color:#fff;}
+
+.form-control {border-radius:0;}
+
+/* ------------------------------ */
+
+/* Content Styles */
+body.modal-open #content {backdrop-filter:blur(4px); filter:blur(4px);}
+
+#content {flex:1 0 auto;}
+
+#content > .container2,
+#content > .container2 > .row,
+#content > .container2 > .row > [class*='col-'],
+#content > .container2 > .row > [class*='col-'] > .details {height:100%;}
+
+.details {letter-spacing:1px; color:#fff; font-size:20px; background-color:rgba(0, 0, 0, 0.20); padding:50px 30px;}
+.details .row.line [class*='col-'] {position:relative; margin-bottom:20px; padding-bottom:20px;}
+.details .row.line [class*='col-']:after {content:''; position:absolute; left:0; border-bottom:1px solid #fff; width:100%; height:1px; padding-bottom:20px;}
+.details .label {font-weight:700; letter-spacing:1.5px;}
+
+.details a:not(.btn) {color:#fff; border-bottom:1px dashed rgba(255, 255, 255, 0.8);}
+
+.details .invite-header {text-align:center; margin-bottom:70px;}
+
+.details .rsvp-form .btn {font-size:30px; font-weight:700; border:10px solid rgba(255, 255, 255, 0.7);}
+.details .rsvp-form .btn:hover {background-color:#55ccd4; border-color:#fff;}
+
+/* ------------------------------ */
+
+/* Modal Styles */
+.modal form #beach {display:none;}
+
+.modal .modal-header,
+.modal .modal-footer {background-color:rgba(0, 0, 0, 0.10);}
+
+.modal .modal-header .close {text-shadow:none;}
+
+.modal .modal-content {background-color:rgba(255, 255, 255, 0.95);}
+
+/* ------------------------------ */
+
+/* Bootstrap Breakpoints */
+
+/* Small (sm) and up*/
+@media (min-width:576px) {
+
+}
+
+
+/* Medium (md) and up */
+@media (min-width:768px) {
+
+}
+
+/* Large (lg) and up */
+@media (min-width:992px) {
+	.details .row.line:after {content:''; background:#fff; width:100%; height:1px; margin:20px 15px;}
+
+	.details .row.line [class*='col-'] {margin-bottom:0; padding-bottom:0;}
+	.details .row.line [class*='col-']:after {display:none;}
+
+	.details .row.line.last:after {height:0;}
+}
+
+/* Extra Large (xl) and up */
+@media (min-width:1200px) {
+
+}
+
+/* ------------------------------ */
+
+/* Scrollbar Styles */
+::-webkit-scrollbar			{background-color:#ddd; width:10px;}
+::-webkit-scrollbar-track	{background-color:#ddd;}
+::-webkit-scrollbar-thumb	{background-color:#aaa;}
+::-webkit-scrollbar-button	{display:none;}
