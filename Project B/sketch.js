@@ -1,6 +1,11 @@
-//array of important elemts like q holds the electric charge/ q_x/q_y hold corresponding x and y charges - 1 is empty but it will hold the lines 
+let osc;
+let playing = false;
+    
+    //array of important elemts like q holds the electric charge/ q_x/q_y hold corresponding x and y charges - 1 is empty but it will hold the lines 
 var q = [2],
     q_x = [100],
+
+
     q_y = [100],
     l = [],
     lines = 150, //number of lines in every electric charge 
@@ -15,12 +20,16 @@ var q = [2],
     charge = 1;
 
 function setup(){
-  createCanvas(windowWidth-1, windowHeight-1);
+  let canvas=createCanvas(1000,600);
+  canvas.parent=("canvasContainer");
   q_x = [width/2];
   q_y = [height/2];
   ellipseMode(RADIUS);
   initiate_l();
   background("black");
+
+  osc = new p5.Oscillator();
+  osc.setType('sine');
   //initial_lines();
 }
 
@@ -33,7 +42,28 @@ function draw(){
   } else {
     console.log("Done");
   }
+  //text('Click to play sound', width/2, height/2);
+
 }
+
+function mouseClicked() {
+  if (!playing) {
+    osc.start();
+    playing = true;
+  } else {
+    osc.stop();
+    playing = false;
+  }
+}
+
+function mouseMoved() {
+  let freq = map(mouseX, 0, width, 100, 1000);
+  osc.freq(freq);
+
+  let amp = map(mouseY, 0, height, 1, 0.1);
+  osc.amp(amp);
+}
+
 
 
 function mousePressed(){
