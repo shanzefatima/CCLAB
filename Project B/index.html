@@ -1,45 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>CCLab Project</title>
-
+	<title>Welcome to Project B</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <input type="text" id="color-picker" />
-
-
-  <script src="libraries/p5.min.js"></script>
-  <!-- Uncomment the line below if you use audio. -->
-   <script src="libraries/p5.sound.min.js"></script> 
-</head>
-
 <body>
-
-  <h1> Welcome to the Project B </h1>
-
-  <!-- the following div will contain the p5 canvas. -->
-  <div id="canvasContainer">
-  <p> The concept of audio art is grounded in the notion that sound and visuals are interconnected, and that the visual experience can be enriched by the addition of audio. By enabling users to create and design their own soundscapes, my project provides a platform for artistic expression that is not only visually stunning but also deeply personal.
-
-    The key to the success of my project lies in the user interaction with the canvas. Users will have the ability to press keys to create different visual effects and interact with sliders to adjust various parameters such as pitch, volume, and color/size.  To make it even easier for users to share their creations, I plan to include a button that allows them to share their audio art on social media platforms like Instagram or Twitter, or to save it to their device.</p>
-
-  </div>
-  <script src="sketch.js"></script>
-
-  <div>
-		<label for="waveform-type">Waveform Frequency:</label>
-		<input type="range" id="waveform-type" min="0" max="2" step="1" value="0">
+	<div class="welcome-container">
+		<h1>Welcome to Audio Art Designed by Shanze Fatima</h1>
+		<a href="main.html" class="exp-btn">Let's experience the project together</a>
 	</div>
-
-  <button id="playButton" onclick="togglePlay()">Play</button>
-
-  <!-- the script tag below should always be at the bottom, right before the closing body tag -->
-  <script src="sketch.js"></script>
 </body>
-
 </html>

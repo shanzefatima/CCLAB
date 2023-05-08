@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CCLab Project</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="main.html">Home</a></li>
+      <li><a href="project.html">Project Description</a></li>
+      <li><a href="about.html">About Me</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1></h1>
+    <p>
+    </p>
+
+    <div id="canvasContainer"></div>
+
+  <div id="controls">
+    <label for="frequency-input">Frequency:</label>
+    <input type="range" id="frequency-input" min="20" max="20000" step="1" value="440">
+    <br>
+    <label for="amplitude-input">Amplitude:</label>
+    <input type="range" id="amplitude-input" min="0" max="1" step="0.01" value="0.5">
+    <br>
+    <label for="waveform-input">Waveform:</label>
+    <select id="waveform-input">
+      <option value="sine">Sine</option>
+      <option value="square">Square</option>
+      <option value="sawtooth">Sawtooth</option>
+      <option value="triangle">Triangle</option>
+    </select>
+
+    <br>
+
+    <label for="pitch-input">Pitch:</label>
+    <input type="range" id="pitch-input" min="0" max="12" step="0.1" value="0">
+    <br>
+    <label for="volume-input">Volume:</label>
+    <input type="range" id="volume-input" min="0" max="1" step="0.01" value="0.5">
+    <br>
+    <button id="apply-button">Apply Changes</button>
+  </div>
+    <br>
+
+    <a href="main.html" class="show-canvas-button">Show Canvas</a>
+  </div>
+
+  </main>
+</body>
+</html>

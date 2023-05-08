@@ -1,11 +1,12 @@
 let osc;
+distance=0
+let frequencyInput = document.getElementById("frequency-input");
+let amplitudeInput = document.getElementById("amplitude-input");
 let playing = false;
-    
+let audioContext;    
     //array of important elemts like q holds the electric charge/ q_x/q_y hold corresponding x and y charges - 1 is empty but it will hold the lines 
 var q = [2],
     q_x = [100],
-
-
     q_y = [100],
     l = [],
     lines = 150, //number of lines in every electric charge 
@@ -19,8 +20,45 @@ var q = [2],
     b2 = 0,
     charge = 1;
 
+    let recorder; // declare recorder variable
+
+    // add event listener to detect key presses
+
+    document.addEventListener('keydown', function(event) {
+      if (event.keyCode === 52) { // check if "4" key is pressed
+        startRecording();
+      } else if (event.keyCode === 57) { // check if "9" key is pressed
+        stopRecording();
+      }
+    });
+    // function to start screen recording
+    function startRecording() {
+      navigator.mediaDevices.getDisplayMedia({video: true, audio: true})
+        .then(function(stream) {
+          recorder = new MediaRecorder(stream);
+          recorder.start();
+        });
+    }
+    // function to stop screen recording and save the video data
+    function stopRecording() {
+      recorder.stop();
+      recorder.ondataavailable = function(event) {
+        // create a new blob with recorded video data
+        let videoBlob = new Blob([event.data], {type: 'video/webm'});
+        let videoUrl = URL.createObjectURL(videoBlob); //// create a link element
+        let link = document.createElement('a');
+        link.href = videoUrl;
+        link.download = 'recording.webm'; //// set the filename for the downloaded video
+        link.click();
+      };
+    }
+    
+
+
+
+
 function setup(){
-  let canvas=createCanvas(1000,600);
+  let canvas=createCanvas(windowWidth,windowHeight);
   canvas.parent=("canvasContainer");
   q_x = [width/2];
   q_y = [height/2];
@@ -28,12 +66,23 @@ function setup(){
   initiate_l();
   background("black");
 
+  audioContext = new AudioContext();
+  osc = audioContext.createOscillator();
+  osc.type = 'sine';
+  osc.connect(audioContext.destination);
+
   osc = new p5.Oscillator();
   osc.setType('sine');
   //initial_lines();
 }
 
 function draw(){
+    if (keyIsDown(51)) { // if key 3 is pressed
+      saveCanvas('myCanvas', 'png'); // save canvas image as PNG file
+    }
+      
+  
+  
   stroke(255);
   if (counter < iterations){
     update_l();
@@ -46,6 +95,28 @@ function draw(){
 
 }
 
+//  It adds a new charge to the q, q_x, and q_y arrays and restarts the simulation. If the sound is not currently playing, it sets the frequency and amplitude of the oscillator and starts it.
+function mousePressed() {
+  q.push(charge);
+  q_x.push(mouseX);
+  q_y.push(mouseY);
+  restart();
+
+  if (!playing) {
+    let freq = frequencyInput.value;
+    let amp = amplitudeInput.value;
+    osc.frequency.value = freq;
+    osc.gain.value = amp;
+    osc.start();
+    playing = true;
+  }
+}
+function mouseReleased() {
+  if (playing) {
+    osc.stop();
+    playing = false;
+  }
+}
 function mouseClicked() {
   if (!playing) {
     osc.start();
@@ -62,9 +133,8 @@ function mouseMoved() {
 
   let amp = map(mouseY, 0, height, 1, 0.1);
   osc.amp(amp);
+
 }
-
-
 
 function mousePressed(){
   q.push(charge);
@@ -94,6 +164,19 @@ function update_l(){
   filter_();
 }
 
+
+
+// Check if two line segments intersect
+function intersect(a, b, c, d) {
+  let x1 = a[0], y1 = a[1], x2 = b[0], y2 = b[1];
+  let x3 = c[0], y3 = c[1], x4 = d[0], y4 = d[1];
+  let ua = ((x4-x3)*(y1-y3)-(y4-y3)*(x1-x3))/((y4-y3)*(x2-x1)-(x4-x3)*(y2-y1));
+  let ub = ((x2-x1)*(y1-y3)-(y2-y1)*(x1-x3))/((y4-y3)*(x2-x1)-(x4-x3)*(y2-y1));
+    return (ua >= 0 && ua <= 1 && ub >= 0 && ub <= 1);
+  }
+
+
+// Itremoves any line segments that are too close to each other. It does this by iterating through each line segment and comparing its length to a predefined threshold. If the length is less than the threshold, the line segment is removed. This function helps to reduce visual clutter and improves the readability of the simulation.
 function filter_(){
   var output2 = [];
   for (let i = 0; i <= l.length-1; i++){
@@ -158,6 +241,7 @@ function force(x,y){
   return ([f_eq_x, f_eq_y]);
 }
 
+//function initializes l array with lines number of lines for each electric charge. It does this by iterating through each electric charge, and for each charge, it generates lines number of line segments around it that extend outward. The joining_lines() function is then called to connect the line segments, which creates a visual representation of the electric field around the charges.
 function initiate_l(){
   for (let i = 0; i <= q.length-1; i++){
     if (q[i] > 0){
@@ -186,6 +270,33 @@ function is_present(a,b){
       return true;
     } else {
       return false;
+    }
+  }
+}
+
+function keyPressed() {
+  if (keyCode === 48) { // stop sound when key "0" is pressed
+    osc.stop();
+    playing = false;
+  } else if (keyCode === 50) { // reset sketch to initial state when key "2" is pressed
+    q = [2];
+    q_x = [100];
+    q_y = [100];
+    l = [];
+    lines = 150;
+    iterations = 2000;
+    counter = 3;
+    r1 = 0;
+    g1 = 255;
+    b1 = 255;
+    r2 = 255;
+    g2 = 255;
+    b2 = 0;
+    charge = 1;
+    restart();
+    if (playing) {
+      osc.stop();
+      playing = false;
     }
   }
 }
