@@ -111,12 +111,15 @@ function mousePressed() {
     playing = true;
   }
 }
+//it stops the oscillator if it is currently playing 
 function mouseReleased() {
   if (playing) {
     osc.stop();
     playing = false;
   }
 }
+
+//the function toggles the playing state of the oscillator and if not playing i starts it otherwise stops it 
 function mouseClicked() {
   if (!playing) {
     osc.start();
@@ -127,6 +130,7 @@ function mouseClicked() {
   }
 }
 
+//it sets the freq and amplitude based on the mouse current position the range of variable set up is 100 to 1000 at position X and amp variable is set up at position y from range 1 to 0.1 
 function mouseMoved() {
   let freq = map(mouseX, 0, width, 100, 1000);
   osc.freq(freq);
@@ -136,14 +140,9 @@ function mouseMoved() {
 
 }
 
-function mousePressed(){
-  q.push(charge);
-  q_x.push(mouseX);
-  q_y.push(mouseY);
-  restart();
-}
 
 
+//it resets the simulation by setting the background to black and clearing the 1 array . it calls the initiate_l function to set up initial lines and resets the counter variable 
 function restart(){
   background(0);
   l = [];
@@ -152,6 +151,7 @@ function restart(){
   //initial_lines();
 }
 
+//updates the position of line by applying force and filter is called which apply filtering to the lines 
 function update_l(){
   var output = [];
   for (let i = 0; i <= l.length-1; i++){
@@ -188,7 +188,7 @@ function filter_(){
 }
 
 
-
+//This function takes in two arguments, x and y, representing the coordinates of a point. It then calculates the distance between that point and each of the charged particles (stored in the q_x and q_y arrays), subtracts 10 times the absolute value of the charge at each particle from the distance, and returns the minimum value obtained from this calculation.
 function least_distance(x,y){
   var list = [];
   for (let i = 0; i <= q.length-1; i++){
@@ -196,7 +196,7 @@ function least_distance(x,y){
   }
   return (min(list));
 }
-
+//This function takes in two arrays of points, a and b, and draws a line between each corresponding pair of points in these arrays. The color of each line is determined by a gradient based on the magnitude of the force acting on the midpoint of the line (calculated using the force() function) and the colors specified by the r1, g1, b1, r2, g2, and b2 variables.
 function joining_lines(a,b){
   for (let i = 0; i <= a.length-1; i++){
     var f_x = force(a[i][0],a[i][1])[0],
@@ -210,6 +210,8 @@ function joining_lines(a,b){
 
 
 
+//This function draws a circle for each charged particle at its position, with the radius of the circle proportional to the magnitude of the charge. The color of each circle is red if the charge is positive and blue if it is negative.
+
 function show_charges(){
   noStroke();
   for (let i = 0; i <= q.length-1; i++){
@@ -221,7 +223,7 @@ function show_charges(){
     ellipse(q_x[i],q_y[i],abs(q[i])*10);
   }
 }
-
+//This function takes in two arguments, x and y, representing the coordinates of a point. It calculates the net electric force acting on that point due to all the charged particles (stored in the q, q_x, and q_y arrays) using Coulomb's law, and returns the force vector as an array with two components, one for the x-component of the force and one for the y-component of the force.
 function force(x,y){
   var f_eq_x = 0,
       f_eq_y = 0;
@@ -252,6 +254,7 @@ function initiate_l(){
   }
 }
 
+// takes a list a, an integer b, and an element c. It creates a new list out that is a copy of a, but with the b-th element replaced with c. It then returns out.
 function change_element(a,b,c){ //changes the b'th index element of a list a, with c
   var out = [];
   for (let i = 0; i <= a.length-1; i++){
@@ -264,6 +267,7 @@ function change_element(a,b,c){ //changes the b'th index element of a list a, wi
   return out;
 }
 
+// takes an element a and a list b. It checks if a is present in b. If it is, the function returns true, otherwise it returns false.
 function is_present(a,b){
   for (let i = 0; i <= b.length-1; i++){
     if (b[i] === a){
@@ -273,7 +277,7 @@ function is_present(a,b){
     }
   }
 }
-
+//The function keyPressed() is an event listener that responds to key presses. If the keyCode of the pressed key is 48, it stops the oscillator and sets the playing variable to false. If the keyCode is 50, it resets the sketch to its initial state by reinitializing all variables and calling the restart() function. If playing is true, it stops the oscillator.
 function keyPressed() {
   if (keyCode === 48) { // stop sound when key "0" is pressed
     osc.stop();
@@ -300,6 +304,7 @@ function keyPressed() {
     }
   }
 }
+//The function direction(a,b,c,d) takes four parameters a, b, c, and d, which are the x and y coordinates of two points. It calculates the angle between the line segment connecting the two points and the positive x-axis, using the atan function and adjusting for the quadrant. It returns the angle in radians. If the x-coordinates of the two points are the same, it handles this as a special case and returns a fixed angle depending on the y-coordinates.
 
 function direction(a,b,c,d){ //gives the angle from point (a,b) to the point (c,d)
   if (a === c){
